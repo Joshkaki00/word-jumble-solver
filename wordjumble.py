@@ -60,8 +60,6 @@ def create_words_dict(words_list):
         words_dict[key].append(word)
     
     return words_dict
-    
-    return words_dict
 
 
 def solve_one_jumble(letters, words_dict):
