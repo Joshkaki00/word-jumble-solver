@@ -102,6 +102,38 @@ def solve_one_jumble(letters, words_dict):
     return valid_words
 
 
+def get_combinations(items, k):
+    """
+    Generate combinations using nested loops with indices.
+    """
+    n = len(items)
+    result = []
+    
+    # We'll use indices to track which items to pick
+    indices = list(range(k))  # Start with [0, 1, 2, ..., k-1]
+    
+    while True:
+        # Add current combination
+        combo = tuple(items[i] for i in indices)
+        result.append(combo)
+        
+        # Find the rightmost index that can be incremented
+        i = k - 1
+        while i >= 0 and indices[i] == n - k + i:
+            i -= 1
+        
+        # If no index can be incremented, we're done
+        if i < 0:
+            break
+        
+        # Increment this index and reset all indices to its right
+        indices[i] += 1
+        for j in range(i + 1, k):
+            indices[j] = indices[j - 1] + 1
+    
+    return result
+
+
 def solve_final_jumble(letters, final_circles, words_dict):
     """
     Solve the final jumbled phrase by unscrambling the given letters.
