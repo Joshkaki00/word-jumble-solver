@@ -109,6 +109,12 @@ def get_combinations(items, k):
     n = len(items)
     result = []
     
+    # Add this validation
+    if k > n or k < 0:
+        return []
+    if k == 0:
+        return [()]
+    
     # We'll use indices to track which items to pick
     indices = list(range(k))  # Start with [0, 1, 2, ..., k-1]
     
