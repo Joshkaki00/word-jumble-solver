@@ -130,13 +130,33 @@ def solve_final_jumble(letters, final_circles, words_dict):
         words = solve_one_jumble(letters, words_dict)
         return [(word,) for word in words]
     
-    # Otherwise, it's a multi-word phrase
+    # Multi-word case
     group_sizes = [len(circles) for circles in final_circles]
     valid_phrases = []
     
-    # TODO: Implement multi-word phrase solving
-    # HINT: Use itertools.combinations to partition letters
-    # HINT: Filter words by required lengths in group_sizes
+    # For 2-word case
+    if len(group_sizes) == 2:
+        first_word_length = group_sizes[0]
+        
+        # Use our custom combinations function
+        for combo in get_combinations(letters, first_word_length):
+            # combo is a tuple like ('M', 'U', 'T', 'T')
+            first_word_letters = ''.join(combo)
+            
+            # Get remaining letters for second word
+            remaining = list(letters)
+            for letter in combo:
+                remaining.remove(letter)
+            second_word_letters = ''.join(remaining)
+            
+            # Check if both form valid words
+            first_words = solve_one_jumble(first_word_letters, words_dict)
+            second_words = solve_one_jumble(second_word_letters, words_dict)
+            
+            # If both are valid, add all combinations
+            for word1 in first_words:
+                for word2 in second_words:
+                    valid_phrases.append((word1, word2))
     
     return valid_phrases
 
