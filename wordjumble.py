@@ -171,6 +171,7 @@ def solve_final_jumble(letters, final_circles, words_dict):
     # Multi-word case
     group_sizes = [len(circles) for circles in final_circles]
     valid_phrases = []
+    seen = set()
     
     # For 2-word case
     if len(group_sizes) == 2:
