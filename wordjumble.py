@@ -45,6 +45,21 @@ def sorted_letters(scrambled_letters):
 
 
 def create_words_dict(words_list):
+    """
+    Create a dictionary mapping sorted letters to list of valid words.
+    This enables O(1) lookup instead of O(n) linear search.
+    
+    Args:
+        words_list: List of dictionary words
+        
+    Returns:
+        Dictionary where keys are sorted letters, values are lists of words
+        
+    Example:
+        >>> words_dict = create_words_dict(['DOG', 'GOD', 'CAT'])
+        >>> words_dict['DGO']
+        ['DOG', 'GOD']
+    """
     words_dict = {}
     
     # Loop through each word in the dictionary
