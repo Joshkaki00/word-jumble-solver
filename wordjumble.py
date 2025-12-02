@@ -92,10 +92,12 @@ def solve_one_jumble(letters, words_dict):
         >>> solve_one_jumble('ILST', words_dict)
         ['LIST', 'SILT', 'SLIT']
     """
-    valid_words = []
+    # Sort the scrambled letters to create a lookup key
+    key = sorted_letters(letters)
     
-    # TODO: Implement this function
-    # HINT: Sort the letters and look them up in words_dict
+    # Look up this key in our dictionary
+    # Use .get() with empty list as default in case key doesn't exist
+    valid_words = words_dict.get(key, [])
     
     return valid_words
 
