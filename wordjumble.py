@@ -195,7 +195,10 @@ def solve_final_jumble(letters, final_circles, words_dict):
             # If both are valid, add all combinations
             for word1 in first_words:
                 for word2 in second_words:
-                    valid_phrases.append((word1, word2))
+                    phrase = (word1, word2)
+                    if phrase not in seen:
+                        seen.add(phrase)
+                        valid_phrases.append(phrase)
     
     return valid_phrases
 
